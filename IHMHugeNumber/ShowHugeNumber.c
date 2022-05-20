@@ -10,7 +10,22 @@ static char SignToChar (const Sign sign) {
 }
 
 static char* HugeUnsignedIntToString (const HugeUnsignedInt* hugeUnsignedInt) {
-    return NULL;
+    const int stringLength = getHugeUnsignedIntLength (hugeUnsignedInt) + 1;
+    char* hugeUnsignedIntInString = NULL;
+
+    if (hugeUnsignedInt != NULL) {
+        hugeUnsignedIntInString = malloc (stringLength * sizeof (HugeUnsignedInt));
+        if (hugeUnsignedIntInString != NULL) {
+            Node* node = hugeUnsignedInt->start;;
+            for (int digitCounter = 0; (!isNodeEmpty (node)) && (digitCounter < stringLength); digitCounter++) {
+                hugeUnsignedIntInString[digitCounter] = digitToChar (node->digit);
+                node = node->next;
+            }
+            hugeUnsignedIntInString[stringLength - 1] = '\0';
+        }
+    }
+
+    return hugeUnsignedIntInString;
 }
 
 static char* HugeIntToString (const HugeInt* hugeInt) {
