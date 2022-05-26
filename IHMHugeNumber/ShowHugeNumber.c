@@ -53,6 +53,7 @@ static char* HugeIntToString (const HugeInt* hugeInt) {
     return hugeIntInString;
 }
 
+
 static char* HugeFloatToString (const HugeFloat* hugeFloat) {
     const int stringLength = getHugeFloatLength (hugeFloat) + SIZE_OF_EXPONENT_MARKUP;
     char* hugeFloatInString = NULL;
