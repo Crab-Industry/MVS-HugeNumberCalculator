@@ -36,7 +36,7 @@ HugeUnsignedInt* addHugeUnsignedInt (const HugeUnsignedInt* operand1, const Huge
 }
 
 HugeUnsignedInt* substractHugeUnsignedInt (const HugeUnsignedInt* operand1, const HugeUnsignedInt* operand2) {
-    HugeInt* result = createHugeInt ();
+    HugeUnsignedInt* result = createHugeInt ();
 
     if (result != NULL) {
         Node* node1;
