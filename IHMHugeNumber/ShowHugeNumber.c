@@ -8,12 +8,12 @@
 
 static char SignToChar (const Sign sign) {
     switch (sign) {
-        case PLUS:
-            return '+';
-        case MINUS:
-            return '-';
-        default:
-            return 'E';
+    case PLUS:
+        return '+';
+    case MINUS:
+        return '-';
+    default:
+        return 'E';
     }
 }
 
@@ -55,13 +55,31 @@ static char* HugeIntToString (const HugeInt* hugeInt) {
 
 
 static char* HugeFloatToString (const HugeFloat* hugeFloat) {
-    return NULL;
+    const int stringLength = getHugeFloatLength (hugeFloat) + SIZE_OF_EXPONENT_MARKUP;
+    char* hugeFloatInString = NULL;
+
+    if (hugeFloat != NULL) {
+        hugeFloatInString = malloc (stringLength * sizeof (HugeFloat));
+        if (hugeFloatInString != NULL) {
+            int significandLength = getHugeIntLength (hugeFloat->significand);
+            char* significandInString = HugeIntToString (hugeFloat->significand);
+            int exponentLength = getHugeIntLength (hugeFloat->exponent);
+            char* exponentInString = HugeIntToString (hugeFloat->exponent);
+
+            memcpy (hugeFloatInString, significandInString, significandLength);
+            free (significandInString);
+            memcpy (hugeFloatInString + significandLength, EXPONENT_MARKUP, SIZE_OF_EXPONENT_MARKUP);
+            memcpy (hugeFloatInString + significandLength + SIZE_OF_EXPONENT_MARKUP, exponentInString, exponentLength + 1);
+            free (exponentInString);
+        }
+    }
+    return hugeFloatInString;
 }
 
-void printHugeUnsignedInt(const HugeUnsignedInt* hugeUnsignedInt) {
-    char* hugeUnsignedIntString = HugeUnsignedIntToString(hugeUnsignedInt);
-    printf("%s\n", hugeUnsignedIntString);
-    free(hugeUnsignedIntString);
+void printHugeUnsignedInt (const HugeUnsignedInt* hugeUnsignedInt) {
+    char* hugeUnsignedIntString = HugeUnsignedIntToString (hugeUnsignedInt);
+    printf ("%s\n", hugeUnsignedIntString);
+    free (hugeUnsignedIntString);
 }
 
 void printHugeInt (const HugeInt* hugeInt) {
@@ -71,4 +89,7 @@ void printHugeInt (const HugeInt* hugeInt) {
 }
 
 void printHugeFloat (const HugeFloat* hugeFloat) {
+    char* hugeFloatString = HugeFloatToString (hugeFloat);
+    printf ("%s\n", hugeFloatString);
+    free (hugeFloatString);
 }
