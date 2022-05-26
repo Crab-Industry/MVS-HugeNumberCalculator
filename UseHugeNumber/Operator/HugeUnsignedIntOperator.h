@@ -5,7 +5,7 @@
 #include "../Type/HugeInt.h"
 
 extern HugeUnsignedInt* addHugeUnsignedInt                 (const HugeUnsignedInt* operand1, const HugeUnsignedInt* operand2);
-extern HugeInt*         substractHugeUnsignedInt           (const HugeUnsignedInt* operand1, const HugeUnsignedInt* operand2);
+extern HugeUnsignedInt* substractHugeUnsignedInt           (const HugeUnsignedInt* operand1, const HugeUnsignedInt* operand2);
 extern HugeUnsignedInt* multiplyHugeUnsignedInt            (const HugeUnsignedInt* operand1, const HugeUnsignedInt* operand2);
 extern HugeUnsignedInt* divideHugeUnsignedInt              (const HugeUnsignedInt* operand1, const HugeUnsignedInt* operand2);
 extern unsigned int     isHugeUnsignedIntStrictlySuperior  (const HugeUnsignedInt* operand1, const HugeUnsignedInt* operand2);
